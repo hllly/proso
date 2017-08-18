@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.proso.dao.C_RecordDetailDao" >
+    <resultMap id="BaseResultMap" type="com.proso.pojo.C_RecordDetail" >
+        <result column="c_number" property="c_number" jdbcType="VARCHAR" />
+        <result column="c_email" property="c_email" jdbcType="VARCHAR" />
+        <result column="c_name" property="c_name" jdbcType="VARCHAR" />
+        <result column="c_address" property="c_address" jdbcType="VARCHAR" />
+        <result column="c_property" property="c_property" jdbcType="VARCHAR" />
+        <result column="c_scale" property="c_scale" jdbcType="VARCHAR" />
+        <result column="c_country" property="c_country" jdbcType="VARCHAR" />
+        <result column="c_superOrgan" property="c_superOrgan" jdbcType="VARCHAR" />
+        <result column="c_birth" property="c_birth" jdbcType="VARCHAR" />
+        <result column="c_description" property="c_description" jdbcType="VARCHAR" />
+        <result column="c_history" property="c_history" jdbcType="VARCHAR" />
+        <result column="c_products" property="c_products" jdbcType="VARCHAR" />
+        <result column="c_industry" property="c_industry" jdbcType="VARCHAR" />
+        <result column="c_other" property="c_other" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        c_number
+    </sql>
+
+    <select id="selectCRecordDetailByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select *
+        from c_recorddetail
+        where c_email = #{c_email,jdbcType=VARCHAR}
+    </select>
+
+    <!--<select id="selectAllPUser" resultMap="BaseResultMap" >-->
+        <!--select-->
+        <!--<include refid="Base_Column_List" />-->
+        <!--from p_resume-->
+    <!--</select>-->
+
+
+    <!--<insert id="updatePResume" parameterType="com.proso.pojo.P_Resume" >-->
+        <!--update p_resume set-->
+        <!--p_education=#{p_education,jdbcType=VARCHAR},-->
+        <!--p_graduateTime=#{p_graduateTime,jdbcType=VARCHAR},-->
+        <!--p_college=#{p_college,jdbcType=VARCHAR},-->
+        <!--p_major=#{p_major,jdbcType=VARCHAR},-->
+        <!--p_workTime=#{p_workTime,jdbcType=VARCHAR},-->
+        <!--p_employer=#{p_employer,jdbcType=VARCHAR},-->
+        <!--p_other=#{p_other,jdbcType=VARCHAR},-->
+        <!--p_reDocPath=#{p_reDocPath,jdbcType=VARCHAR},-->
+        <!--p_skill=#{p_skill,jdbcType=VARCHAR}-->
+        <!--where email=#{p_skill,jdbcType=VARCHAR}-->
+    <!--</insert>-->
+
+</mapper>
+
+
+

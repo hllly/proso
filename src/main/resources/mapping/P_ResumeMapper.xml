@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+        <!--private String p_IDCard;-->
+        <!--private String email;-->
+        <!--private String p_education;//最高学历-->
+        <!--private String p_graduateTime;//毕业时间-->
+        <!--private String p_college;//大学-->
+        <!--private String p_major;//专业-->
+        <!--private String p_workTime;//工作经验-->
+        <!--private String p_skill;//专业技能-->
+        <!--private String p_employer1;//工作过的公司-->
+        <!--private String p_other;//补充-->
+        <!--private String p_reDocPath;//简历文件-->
+<mapper namespace="com.proso.dao.P_ResumeDao" >
+    <resultMap id="BaseResultMap" type="com.proso.pojo.P_Resume" >
+        <result column="p_IDCard" property="p_IDCard" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="p_education" property="p_education" jdbcType="VARCHAR" />
+        <result column="p_graduateTime" property="p_graduateTime" jdbcType="VARCHAR" />
+        <result column="p_college" property="p_college" jdbcType="VARCHAR" />
+        <result column="p_major" property="p_major" jdbcType="VARCHAR" />
+        <result column="p_workTime" property="p_workTime" jdbcType="VARCHAR" />
+        <result column="p_skill" property="p_skill" jdbcType="VARCHAR" />
+        <result column="p_employer" property="p_employer" jdbcType="VARCHAR" />
+        <result column="p_other" property="p_other" jdbcType="VARCHAR" />
+        <result column="p_reDocPath" property="p_reDocPath" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        p_IDCard,email,p_education,p_graduateTime,p_college,p_major,p_workTime,p_employer,p_other,p_reDocPath,p_skill
+    </sql>
+
+    <select id="selectPResumeByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from p_resume
+        where email = #{email,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAllPUser" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from p_resume
+    </select>
+
+
+    <insert id="updatePResume" parameterType="com.proso.pojo.P_Resume" >
+        update p_resume set
+        p_education=#{p_education,jdbcType=VARCHAR},
+        p_graduateTime=#{p_graduateTime,jdbcType=VARCHAR},
+        p_college=#{p_college,jdbcType=VARCHAR},
+        p_major=#{p_major,jdbcType=VARCHAR},
+        p_workTime=#{p_workTime,jdbcType=VARCHAR},
+        p_employer=#{p_employer,jdbcType=VARCHAR},
+        p_other=#{p_other,jdbcType=VARCHAR},
+        p_reDocPath=#{p_reDocPath,jdbcType=VARCHAR},
+        p_skill=#{p_skill,jdbcType=VARCHAR}
+        where email=#{p_skill,jdbcType=VARCHAR}
+    </insert>
+
+</mapper>
+
+
+

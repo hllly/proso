@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+        <!--private String u_number;//机构代码-->
+        <!--private String u_email;-->
+        <!--private String u_name;//院校名称-->
+        <!--private String u_address;//院校地址-->
+        <!--private String u_property;//院校性质，本科或专科-->
+        <!--private String u_class;//985.211，普通-->
+        <!--private String u_birth;//院校创建时间-->
+        <!--private String u_city;//所在城市-->
+        <!--private String u_super;//院校主管部门-->
+        <!--private String other;//其他-->
+<mapper namespace="com.proso.dao.U_ResumeDao" >
+    <resultMap id="BaseResultMap" type="com.proso.pojo.U_RecordDetail" >
+        <result column="u_number" property="u_number" jdbcType="VARCHAR" />
+        <result column="u_email" property="u_email" jdbcType="VARCHAR" />
+        <result column="u_name" property="u_name" jdbcType="VARCHAR" />
+        <result column="u_property" property="u_property" jdbcType="VARCHAR" />
+        <result column="u_class" property="u_class" jdbcType="VARCHAR" />
+        <result column="u_birth" property="u_birth" jdbcType="VARCHAR" />
+        <result column="u_city" property="u_city" jdbcType="VARCHAR" />
+        <result column="u_super" property="u_super" jdbcType="VARCHAR" />
+        <result column="u_other" property="u_other" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+       u_number,u_email,u_name,u_property,u_class,u_birth,u_city,u_super,u_other
+    </sql>
+
+    <select id="selectUResumeByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from u_recorddetail
+        where u_email = #{u_email,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAllUUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from u_recorddetail
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

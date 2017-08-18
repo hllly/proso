@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.proso.dao.P_UserDao" >
+    <resultMap id="BaseResultMap" type="com.proso.pojo.P_User" >
+        <id column="p_id" property="p_id" jdbcType="INTEGER" />
+        <result column="p_email" property="p_email" jdbcType="VARCHAR" />
+        <result column="p_phone" property="p_phone" jdbcType="VARCHAR" />
+        <result column="p_password" property="p_password" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        p_id,p_email,p_phone,p_password
+    </sql>
+
+    <select id="selectUserById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from p_user
+        where p_id = #{p_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectUserByPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from p_user
+        where  p_phone= #{p_phone,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectUserByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from p_user
+        where p_email = #{p_email,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAllPUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from p_user
+    </select>
+
+    <update id="setPNewPwd" >
+        update p_user set
+        p_password=#{1}
+        where p_email=#{0}
+    </update>
+
+
+    <insert id="addUser" parameterType="com.proso.pojo.P_User" >
+        insert into p_user (p_email,p_phone, p_password)
+        values (#{p_email,jdbcType=VARCHAR},#{p_phone,jdbcType=VARCHAR},
+        #{p_password,jdbcType=VARCHAR})
+    </insert>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

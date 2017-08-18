@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+        <!--private int jobId;//职位编号-->
+        <!--private String c_number;//所属单位-->
+        <!--private String pubTime;//发布时间-->
+        <!--private String department;//部门-->
+        <!--private String describe;//岗位职责描述-->
+        <!--private String requirement;//岗位要求-->
+        <!--private String industry;//所属行业-->
+        <!--private String jobName;//岗位名称-->
+        <!--private String city;//工作城市-->
+<mapper namespace="com.proso.dao.NewJobDao" >
+    <resultMap id="BaseResultMap" type="com.proso.pojo.NewJob" >
+        <id column="jobId" property="jobId" jdbcType="INTEGER" />
+        <result column="jobId" property="jobId" jdbcType="VARCHAR" />
+        <result column="c_number" property="c_number" jdbcType="VARCHAR" />
+        <result column="pubTime" property="pubTime" jdbcType="VARCHAR" />
+        <result column="department" property="department" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="requirement" property="requirement" jdbcType="VARCHAR" />
+        <result column="industry" property="industry" jdbcType="VARCHAR" />
+        <result column="jobName" property="jobName" jdbcType="VARCHAR" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        jobId,c_number,pubTime,department,description,requirement,industry,jobName,city
+    </sql>
+
+    <select id="selectJobByJobId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from newjob
+        where jobId = #{jobId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectJobByCity" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from newjob
+        where city like #{city,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByJobName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from newjob
+        where jobName like #{jobName,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectJobByIndustry" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from newjob
+        where  industry like #{industry,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectJobList" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from newjob
+        where  (industry like #{0} and jobName like #{1} and city like #{2})
+    </select>
+
+    <insert id="addNewJob" parameterType="com.proso.pojo.NewJob" >
+        insert into newjob(c_number,pubTime,department,description,requirement,industry,jobName,city)
+        values (#{c_number,jdbcType=VARCHAR},
+        #{pubTime,jdbcType=VARCHAR},
+        #{department,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR},
+        #{requirement,jdbcType=VARCHAR},
+        #{industry,jdbcType=VARCHAR},
+        #{jobName,jdbcType=VARCHAR},
+        #{city,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="removeNewJob" parameterType="Integer" >
+        DELETE  FROM newjob where jobId=
+        #{jobId,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="updateNewJob" parameterType="com.proso.pojo.NewJob" >
+        update set
+        c_number=#{NewJob.c_number,jdbcType=VARCHAR},
+        pubTime=#{NewJob.pubTime,jdbcType=VARCHAR},
+        department=#{NewJob.department,jdbcType=VARCHAR},
+        description=#{NewJob.description,jdbcType=VARCHAR},
+        requirement=#{NewJob.requirement,jdbcType=VARCHAR},
+        industry=#{NewJob.industry,jdbcType=VARCHAR},
+        jobName=#{NewJob.jobName,jdbcType=VARCHAR},
+        city=#{NewJob.city,jdbcType=VARCHAR})
+    </insert>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

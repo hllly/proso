@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.proso.dao.InchatDao" >
+    <resultMap id="BaseResultMap" type="com.proso.websocket.HailRelation" >
+        <id column="hr_id" property="hr_id" jdbcType="INTEGER" />
+        <result column="hailEmail" property="hailEmail" jdbcType="VARCHAR" />
+        <result column="selfEmail" property="selfEmail" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        hr_id,hailEmail,selfEmail
+    </sql>
+
+    <select id="selectHailRelationEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from hailRelation
+        where selfEmail = #{selfEmail,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="addHailRelation" parameterType="hashmap">
+        insert into hailrelation (hailEmail,selfEmail)
+        values (#{hailEmail},#{selfEmail})
+    </insert>
+
+    <delete id="deleteHailRelation" parameterType="hashmap">
+        DELETE FROM hailrelation WHERE hailEmail = #{hailEmail} and selfEmail = #{selfEmail}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

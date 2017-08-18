@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.proso.dao.U_UserDao" >
+    <resultMap id="BaseResultMap" type="com.proso.pojo.U_User" >
+        <id column="u_id" property="u_id" jdbcType="INTEGER" />
+        <result column="u_number" property="u_number" jdbcType="VARCHAR" />
+        <result column="u_email" property="u_email" jdbcType="VARCHAR" />
+        <result column="u_phone" property="u_phone" jdbcType="VARCHAR" />
+        <result column="u_password" property="u_password" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        u_id,u_number,u_email,u_phone,u_password
+    </sql>
+
+    <select id="selectUserById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from u_user
+        where u_id = #{u_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectUserByNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from u_user
+        where u_number = #{u_number,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectUserByPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from u_user
+        where  u_phone= #{u_phone,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectUserByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from u_user
+        where u_email = #{u_email,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="addUser" parameterType="com.proso.pojo.U_User" >
+        insert into u_user (u_number,u_email,u_phone, u_password)
+        values (#{u_number,jdbcType=VARCHAR},
+        #{u_email,jdbcType=VARCHAR},#{u_phone,jdbcType=VARCHAR},
+        #{u_password,jdbcType=VARCHAR})
+    </insert>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

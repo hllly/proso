@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+        <!--private String email;//邮箱-->
+        <!--private String p_name;//姓名-->
+        <!--private String p_sex;//性别-->
+        <!--private String p_birth;//出生-->
+        <!--private String p_nation;//民族-->
+        <!--private String p_property;//党员/团员/其他党派/群众-->
+        <!--private String p_nickname;//昵称-->
+        <!--private String p_IDCard;//身份证号码-->
+        <!--private String p_address;//通信地址-->
+<mapper namespace="com.proso.dao.P_RecordDetailDao" >
+    <resultMap id="BaseResultMap" type="com.proso.pojo.P_RecordDetail" >
+        <id column="prd_id" property="prd_id" jdbcType="INTEGER" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="p_name" property="p_name" jdbcType="VARCHAR" />
+        <result column="p_sex" property="p_sex" jdbcType="VARCHAR" />
+        <result column="p_birth" property="p_birth" jdbcType="VARCHAR" />
+        <result column="p_nation" property="p_nation" jdbcType="VARCHAR" />
+        <result column="p_property" property="p_property" jdbcType="VARCHAR" />
+        <result column="p_nickname" property="p_nickname" jdbcType="VARCHAR" />
+        <result column="p_IDCard" property="p_IDCard" jdbcType="VARCHAR" />
+        <result column="p_address" property="p_address" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        prd_id,email,p_name,p_sex,p_birth,p_nation,p_property,p_nickname,p_IDCard,p_address
+    </sql>
+
+    <select id="selectRecordDetailByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from p_recorddetail
+        where email = #{email,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="updateRecordDetail" parameterType="com.proso.pojo.P_RecordDetail" >
+        update p_recorddetail set
+        p_name=#{p_name,jdbcType=VARCHAR},
+        p_sex=#{p_sex,jdbcType=VARCHAR},
+        p_birth=#{p_birth,jdbcType=VARCHAR},
+        p_nation=#{p_nation,jdbcType=VARCHAR},
+        p_property=#{p_property,jdbcType=VARCHAR},
+        p_nickname=#{p_nickname,jdbcType=VARCHAR},
+        p_IDCard=#{p_IDCard,jdbcType=VARCHAR},
+        p_address=#{p_address,jdbcType=VARCHAR}
+        where email=#{email,jdbcType=VARCHAR}
+    </insert>
+
+</mapper>
+
+
+
